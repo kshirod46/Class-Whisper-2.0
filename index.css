@@ -1,0 +1,532 @@
+:root {
+  --background-start-rgb: 14, 21, 58;
+  --background-end-rgb: 63, 2, 79;
+  --card-bg-color: rgba(255, 255, 255, 0.1);
+  --card-border-color: rgba(255, 255, 255, 0.2);
+  --text-color: #f0f0f0;
+  --accent-color: #8a2be2;
+  --accent-color-dark: #7b1fa2;
+  --brand-color: #c084fc;
+  --error-color: #ff6b6b;
+  --success-color: #2ecc71;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background: linear-gradient(
+    135deg,
+    rgb(var(--background-start-rgb)) 0%,
+    rgb(var(--background-end-rgb)) 100%
+  );
+  background-attachment: fixed;
+  line-height: 1.6;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card-bg-color);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid var(--card-border-color);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  padding: 1.5rem 2rem;
+  transition: all 0.3s ease;
+}
+
+
+.header {
+  text-align: center;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--brand-color);
+  stroke-width: 1.5;
+}
+
+.brand h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--brand-color);
+  text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #fff;
+  line-height: 1.1;
+}
+
+
+.upload-section {
+  text-align: center;
+}
+
+.upload-area {
+  border: 2px dashed var(--card-border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.upload-area:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.upload-area p {
+  margin-bottom: 1rem;
+}
+
+.upload-btn {
+  font-family: 'Poppins', sans-serif;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-btn:hover:not(:disabled) {
+  background-color: var(--accent-color-dark);
+}
+
+.upload-btn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.file-info {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loader-message {
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--card-border-color);
+  border-bottom-color: var(--accent-color);
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  color: var(--error-color);
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.results-section {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.results-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  font-family: 'Poppins', sans-serif;
+  background: none;
+  border: 1px solid var(--card-border-color);
+  color: var(--text-color);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.tab-btn.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
+}
+
+.tab-content {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.study-notes > div {
+  margin-bottom: 2rem;
+}
+
+.study-notes h3 {
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.study-notes ul, .study-notes ol {
+  list-style-position: inside;
+  padding-left: 0.5rem;
+}
+
+.study-notes ul li, .study-notes ol li {
+  margin-bottom: 0.5rem;
+}
+
+.glossary-item {
+  margin-bottom: 0.75rem;
+}
+
+.transcript-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.transcript-header h3 {
+    font-weight: 600;
+    color: white;
+}
+
+.copy-btn {
+  font-family: 'Poppins', sans-serif;
+  background: none;
+  border: 1px solid var(--card-border-color);
+  color: var(--text-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.copy-btn:hover:not(:disabled) {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.copy-btn.copied {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+  cursor: default;
+}
+
+
+.transcript-display pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-family: 'Poppins', monospace;
+    line-height: 1.7;
+    border: 1px solid var(--card-border-color);
+}
+
+/* --- SHINY BUTTON STYLES --- */
+
+.generate-shiny-btn {
+  margin-top: 1.5rem;
+}
+
+/* Based on: https://ryanmulligan.dev/blog/css-property-new-style/ */
+:root {
+  --shiny-cta-bg: #0e153a; /* Match app background */
+  --shiny-cta-bg-subtle: #1a1818;
+  --shiny-cta-fg: #ffffff;
+  --shiny-cta-highlight: var(--accent-color); /* Match app accent color */
+  --shiny-cta-highlight-subtle: #b57efc; /* Lighter version of accent color */
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-angle-offset {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-percent {
+  syntax: "<percentage>";
+  initial-value: 5%;
+  inherits: false;
+}
+
+@property --gradient-shine {
+  syntax: "<color>";
+  initial-value: white;
+  inherits: false;
+}
+
+.shiny-cta {
+  --animation: gradient-angle linear infinite;
+  --duration: 3s;
+  --shadow-size: 2px;
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  outline-offset: 4px;
+  padding: 1.25rem 2.5rem;
+  font-family: inherit;
+  font-size: 1.125rem;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  border-radius: 360px;
+  color: var(--shiny-cta-fg);
+  background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg))
+      padding-box,
+    conic-gradient(
+        from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+        transparent,
+        var(--shiny-cta-highlight) var(--gradient-percent),
+        var(--gradient-shine) calc(var(--gradient-percent) * 2),
+        var(--shiny-cta-highlight) calc(var(--gradient-percent) * 3),
+        transparent calc(var(--gradient-percent) * 4)
+      )
+      border-box;
+  box-shadow: inset 0 0 0 1px var(--shiny-cta-bg-subtle);
+}
+
+.shiny-cta::before,
+.shiny-cta::after,
+.shiny-cta span::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset-inline-start: 50%;
+    inset-block-start: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+}
+
+.shiny-cta:active:not(:disabled) {
+    translate: 0 1px;
+}
+
+.shiny-cta::before {
+  --size: calc(100% - var(--shadow-size) * 3);
+  --position: 2px;
+  --space: calc(var(--position) * 2);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(
+      circle at var(--position) var(--position),
+      white calc(var(--position) / 4),
+      transparent 0
+    )
+    padding-box;
+  background-size: var(--space) var(--space);
+  background-repeat: space;
+  mask-image: conic-gradient(
+    from calc(var(--gradient-angle) + 45deg),
+    black,
+    transparent 10% 90%,
+    black
+  );
+  border-radius: inherit;
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.shiny-cta::after {
+  --animation: shimmer linear infinite;
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(
+    -50deg,
+    transparent,
+    var(--shiny-cta-highlight),
+    transparent
+  );
+  mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+  opacity: 0.6;
+}
+
+.shiny-cta span {
+  z-index: 1;
+}
+
+.shiny-cta span::before {
+    --size: calc(100% + 1rem);
+    width: var(--size);
+    height: var(--size);
+    box-shadow: inset 0 -1ex 2rem 4px var(--shiny-cta-highlight);
+    opacity: 0;
+}
+
+.shiny-cta {
+  --transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
+  transition: var(--transition);
+  transition-property: --gradient-angle-offset, --gradient-percent,
+    --gradient-shine;
+}
+.shiny-cta,
+.shiny-cta::before,
+.shiny-cta::after {
+    animation: var(--animation) var(--duration),
+      var(--animation) calc(var(--duration) / 0.4) reverse paused;
+    animation-composition: add;
+}
+
+.shiny-cta span::before {
+    transition: opacity var(--transition);
+    animation: calc(var(--duration) * 1.5) breathe linear infinite;
+}
+
+.shiny-cta:is(:hover, :focus-visible):not(:disabled) {
+  --gradient-percent: 20%;
+  --gradient-angle-offset: 95deg;
+  --gradient-shine: var(--shiny-cta-highlight-subtle);
+}
+
+.shiny-cta:is(:hover, :focus-visible):not(:disabled),
+.shiny-cta:is(:hover, :focus-visible):not(:disabled)::before,
+.shiny-cta:is(:hover, :focus-visible):not(:disabled)::after {
+    animation-play-state: running;
+}
+
+.shiny-cta:is(:hover, :focus-visible):not(:disabled) span::before {
+    opacity: 1;
+}
+
+.shiny-cta:disabled {
+  background: linear-gradient(#555, #555) padding-box,
+    conic-gradient(from 0deg, #666, #666) border-box;
+  color: #aaa;
+  cursor: not-allowed;
+  filter: grayscale(0.8);
+}
+
+.shiny-cta:disabled::before,
+.shiny-cta:disabled::after,
+.shiny-cta:disabled span::before {
+    display: none;
+}
+
+@keyframes gradient-angle {
+  to {
+    --gradient-angle: 360deg;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes breathe {
+  from,
+  to {
+    scale: 1;
+  }
+  50% {
+    scale: 1.2;
+  }
+}
+
+/* --- END SHINY BUTTON STYLES --- */
+
+@media (max-width: 600px) {
+  #root {
+    padding: 1rem;
+  }
+  .header h1 {
+    font-size: 2.2rem;
+  }
+  .brand h2 {
+    font-size: 1.2rem;
+  }
+  .brand-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+}
