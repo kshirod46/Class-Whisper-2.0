@@ -1,7 +1,5 @@
 {
   "name": "Class Whisper",
   "description": "Unlock the power of your lectures. AI-powered transcription and study guide generation.",
-  "requestFramePermissions": [
-    "microphone"
-  ]
+  "requestFramePermissions": []
 }
